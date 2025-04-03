@@ -1,0 +1,117 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+void print_winner(void);
+void tally_votes(void);
+
+// Number of candidates
+int candidate_count;
+
+typedef struct
+{
+  string name;
+  int votes;
+} candidate;
+
+#define MAX 9
+candidate candidates[MAX];
+
+int main(int argc, string argv[])
+{
+  //  number of candidates
+  int candidate_count = argc - 1;
+  // Specifying array size
+  candidate candidates[candidate_count];
+
+  //Populate array of candidates
+  if (candidate_count > 9)
+  {
+    printf("Maximum number of candidates is 9\n");
+    return 2;
+  }
+  else if (candidate_count < 1)
+  {
+    printf("Minimum number of candidates is 1\n");
+    return 1;
+  }
+  else
+  {
+    // Setting all candidates vote count at 0
+    for (int i = 0; i < candidate_count; i++)
+    {
+      candidates[i].name = argv[i + 1];
+      candidates[i].votes = 0;
+    }
+  }
+  int voter_count = get_int("Number of voters:");
+  // Updated 'for' functions to have semicolon syntax
+  for (int j = 0; j < voter_count; j++)
+  //Update vote totals given a new vote
+  {
+    string name = get_string("Vote:");
+    bool invalid = false;
+    for (int z = 0; z < candidate_count; z++)
+    {
+      if (strcmp(name, candidates[z].name) == 0)
+      {
+        candidates[z].votes ++;
+      }
+      //BREAK HERE
+      else   
+      {
+        invalid;
+      }
+    } 
+    if (invalid)
+    {
+      printf("Invalid Vote \n");
+    }
+  }
+  tally_votes();
+  return 0; 
+} 
+
+//Print the winner (or winners) of the election
+void tally_votes(void)
+{
+  bool swapped = true;
+  bool unswapped = false;
+  //Find the maximum amount of votes (in two searches)
+  for (int b = 0; b < candidate_count; b++)
+    {
+      if (candidates[b].votes < candidates[b+1].votes)
+      {
+        string temp = candidates[b].name;
+        candidates[b+1].name = candidates[b].name;
+        temp = candidates[b+1].name;
+        swapped;
+      }
+    }
+  if (swapped)
+  {
+    tally_votes();
+  }
+  else
+  {
+    print_winner();
+  }
+}
+
+void print_winner(void)
+{
+  for (int d = 0; d < candidate_count; d++)
+  {
+    // Check for equal values
+    if (candidates[d].votes == candidates[d+1].votes)
+    {
+      string winners[] = {candidates[d].name};
+      printf("%s\n", winners[d]);
+    }
+    else if (candidates[1].votes > candidates[2].votes)
+    {
+     printf("%s\n", candidates[1].name);
+    }
+  }
+}
