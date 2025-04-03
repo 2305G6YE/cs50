@@ -12,6 +12,7 @@ typedef struct
   int number;
 } voted;
 
+void voteset(void);
 void calculate(void);
 //create a command line argument
 int main(int argc,string argv[])
@@ -48,11 +49,10 @@ void voteset(void)
   //For every vote count, ask 3 times
   for (i = 0, i < voters, i++)
   {
-    string rank1 = get_string ("Vote:\n");
-    
-    string rank2 = get_string ("Vote:\n");
-    string rank3 = get_string ("Vote:\n");
     // Add to array 1
+    string rank1 = get_string ("Vote:\n");
+    // define 1st flag
+    bool flagone = false;
     for (i = 0, i < candidate, i++)
     {
       //voted one[0] is not the same as argv[0]. //argv[0]is the program. voted one[0] is candidate 1.
@@ -60,21 +60,53 @@ void voteset(void)
       {
         one.vote[i] ++;
       }
+      else
+      {
+        flagone = true;
+      }
+    }
+    //Array 1's Invalid Vote (Is it still false?)
+    if (!flagone)
+    {
+      printf("Invalid Vote");
+      return 1;
     }
     // Add to array 2
+    string rank2 = get_string ("Vote:\n");
+    // define 2nd flag
+    bool flagtwo = false;
     for (i = 0, i < candidate, i++)
     {
       if(strcmp(two.name[i], rank2) == 0)
       {
         two.vote[i] ++;
       }
+      else
+      {
+        flagtwo = true;
+      }
+    //Array 2's Invalid Vote 
+    if (!flagtwo)
+    {
+       printf("Invalid Vote");   
     }
     // Add to array 3
+    string rank3 = get_string ("Vote:\n");
+    bool flagthree = false;
     for (i = 0, i < candidate, i++)
     {
       if(strcmp(three.name[i], rank3) == 0)
       {
         three.vote[i] ++;
+      }
+      else
+      {
+        flagthree = true;
+      }
+    //Array 3's Invalid Vote
+    if (!flagthree)
+      {
+        printf("Invalid Vote");
       }
     }
   }
