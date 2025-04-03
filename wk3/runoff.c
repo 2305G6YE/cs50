@@ -48,9 +48,33 @@ void voteset(void)
   //For every vote count, ask 3 times
   for (i = 0, i < voters, i++)
   {
-    int rank1 = get_int ("Vote:\n");
-    int rank2 = get_int ("Vote:\n");
-    int rank3 = get_int ("Vote:\n");
+    string rank1 = get_string ("Vote:\n");
+    
+    string rank2 = get_string ("Vote:\n");
+    string rank3 = get_string ("Vote:\n");
     // Add to array 1
-    if (rank1 = vote_one.name)
+    for (i = 0, i < candidate, i++)
+    {
+      //voted one[0] is not the same as argv[0]. //argv[0]is the program. voted one[0] is candidate 1.
+      if (strcmp(one.name[i], rank1) == 0)
+      {
+        one.vote[i] ++;
+      }
+    }
+    // Add to array 2
+    for (i = 0, i < candidate, i++)
+    {
+      if(strcmp(two.name[i], rank2) == 0)
+      {
+        two.vote[i] ++;
+      }
+    }
+    // Add to array 3
+    for (i = 0, i < candidate, i++)
+    {
+      if(strcmp(three.name[i], rank3) == 0)
+      {
+        three.vote[i] ++;
+      }
+    }
   }
