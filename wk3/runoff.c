@@ -35,13 +35,21 @@ int main(int argc,string argv[])
   }
   //Fill the voting arrays
   voteset();
+  //Recursively compare the 1st-3rd arrays for >50%. If not, delete last and move on to next array
+  calculate();
 }
 
-//Recursively compare the 1st-3rd arrays for >50%. If not, delete last and move on to next array
-//print Winner
 
 //recursive algorithm 
 void calculate()
+{
+  //Determine the total votes given
+  //Find out each candidate's ratio of votes
+  //Determine if if any is over <50
+    //If statement if found, print winner)
+    //else statement if not, flag for unsuccessful)
+  //If flag is triggered, minus lowest candidate, move on to next array.
+}
 
 //vote set algorithm
 void voteset(void)
@@ -88,7 +96,8 @@ void voteset(void)
     //Array 2's Invalid Vote 
     if (!flagtwo)
     {
-       printf("Invalid Vote");   
+      printf("Invalid Vote");   
+      return 1;
     }
     // Add to array 3
     string rank3 = get_string ("Vote:\n");
@@ -107,6 +116,7 @@ void voteset(void)
     if (!flagthree)
       {
         printf("Invalid Vote");
+        return 1;
       }
     }
   }
