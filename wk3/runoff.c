@@ -9,7 +9,9 @@
 typedef struct
 {
   string name;
-  int number;
+  int vote1;
+  int vote2;
+  int vote3;
 } voted;
 
 void voteset(void);
@@ -19,9 +21,7 @@ int main(int argc,string argv[])
 {
   int candidates = atoi(argc - 1);
   //
-  voted one[candidates]
-  voted two[candidates]
-  voted three[candidates]
+  voted tally[candidates]
   //print usage: runoff [candidate...]
   if (int argc <= 1)
   {
@@ -43,12 +43,24 @@ int main(int argc,string argv[])
 //recursive algorithm 
 void calculate()
 {
-  //Determine the total votes given
-  //Find out each candidate's ratio of votes
-  //Determine if if any is over <50
+  //Determine if any candidate >50% of voter_count
+  for(i = 0, i < candidate, i++)
+  {
+    if(one[i].name > (voters / 2))
+    {
+      printf("%s, one[i].name");
+      return;
+    }
+    else
+    {
+      int lowest = 
+      for (i = 0, i < candidate)
+    }
+  }
     //If statement if found, print winner)
-    //else statement if not, flag for unsuccessful)
-  //If flag is triggered, minus lowest candidate, move on to next array.
+    //else statement if not, assign integar as lowest, find the lowest
+    //remove the element by shifting the array to the left from the element
+    //move on to the 2nd vote
 }
 
 //vote set algorithm
@@ -57,14 +69,14 @@ void voteset(void)
   //For every vote count, ask 3 times
   for (i = 0, i < voters, i++)
   {
-    // Add to array 1
+    // Set first vote
     string rank1 = get_string ("Vote:\n");
     // define 1st flag
     bool flagone = false;
     for (i = 0, i < candidate, i++)
     {
       //voted one[0] is not the same as argv[0]. //argv[0]is the program. voted one[0] is candidate 1.
-      if (strcmp(one.name[i], rank1) == 0)
+      if (strcmp(tally.name[i], rank1) == 0)
       {
         one.vote[i] ++;
       }
@@ -72,51 +84,3 @@ void voteset(void)
       {
         flagone = true;
       }
-    }
-    //Array 1's Invalid Vote (Is it still false?)
-    if (!flagone)
-    {
-      printf("Invalid Vote");
-      return 1;
-    }
-    // Add to array 2
-    string rank2 = get_string ("Vote:\n");
-    // define 2nd flag
-    bool flagtwo = false;
-    for (i = 0, i < candidate, i++)
-    {
-      if(strcmp(two.name[i], rank2) == 0)
-      {
-        two.vote[i] ++;
-      }
-      else
-      {
-        flagtwo = true;
-      }
-    //Array 2's Invalid Vote 
-    if (!flagtwo)
-    {
-      printf("Invalid Vote");   
-      return 1;
-    }
-    // Add to array 3
-    string rank3 = get_string ("Vote:\n");
-    bool flagthree = false;
-    for (i = 0, i < candidate, i++)
-    {
-      if(strcmp(three.name[i], rank3) == 0)
-      {
-        three.vote[i] ++;
-      }
-      else
-      {
-        flagthree = true;
-      }
-    //Array 3's Invalid Vote
-    if (!flagthree)
-      {
-        printf("Invalid Vote");
-        return 1;
-      }
-    }
-  }
