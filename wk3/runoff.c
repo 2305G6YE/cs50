@@ -48,23 +48,34 @@ int main(int argc,string argv[])
 //recursive algorithm 
 void calculate()
 {
-  //Determine if any candidate >50% of voter_count
+  //1: Determine if any candidate >50% of voter_count
   for(i = 0, i < candidate, i++)
   {
-    if(one[i].name > (voters / 2))
+    if(election.vote1[i] > (voters / 2))
     {
-      printf("%s, one[i].name");
+      //If such is found
+      printf("%s, election.name[i]\n");
       return;
     }
     else
     {
-      int lowest = 
-      for (i = 0, i < candidate)
+      int lowest = election.vote1[0]
+      for (i = 1, i < candidate, i++)
+      {
+        if (election.vote1[i] > lowest)
+        {
+          //Identify which [i] is lowest in vote1
+          election.vote1[i] = lowest
+        }
+      }
+      for (i = lowest, i < candidate, i++)
+      {
+        election.name[i + 1] = election.name[i]
+        election.vote2[i + 1] = election.vote2[i]
+        election.vote3[i + 1] = election.vote3[i]
+      }
     }
   }
-    //If statement if found, print winner)
-    //else statement if not, assign integar as lowest, find the lowest
-    //remove the element by shifting the array to the left from the element
     //move on to the 2nd vote
 }
 
@@ -80,9 +91,10 @@ void voteset(void)
     bool flagone = false;
     for (i = 0, i < candidate, i++)
     {
-      //voted one[0] is not the same as argv[0]. //argv[0]is the program. voted one[0] is candidate 1.
+      //election.name[0] is not the same as argv[0]. //argv[0]is the program. election.name[0] is candidate 1.
       if (strcmp(election.name[i], rank1) == 0)
       {
+        //fill 1st array
         election.vote1[i] ++;
       }
       else
@@ -102,6 +114,7 @@ void voteset(void)
     {
       if (strcmp(election.name[i], rank2) == 0)
       {
+        //fill 2nd array
         election.vote2[i] ++;  
       }
       else
