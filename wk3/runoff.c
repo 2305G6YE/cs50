@@ -12,7 +12,7 @@ typedef struct
   int vote1;
   int vote2;
   int vote3;
-} voted;
+}tally;
 
 void voteset(void);
 void calculate(void);
@@ -21,7 +21,7 @@ int main(int argc,string argv[])
 {
   int candidates = atoi(argc - 1);
   //
-  voted tally[candidates]
+  tally election[candidates]
   //print usage: runoff [candidate...]
   if (int argc <= 1)
   {
@@ -30,7 +30,12 @@ int main(int argc,string argv[])
   }
   //getstring number of voters
   else
-  {
+  { 
+    for(i = 0, i < candidates, i++)
+    {
+      //Fill up name array
+      election.name[i] =argv[i+1]
+    }
     int voters=get_int("Number of voters: \n");
   }
   //Fill the voting arrays
@@ -70,17 +75,62 @@ void voteset(void)
   for (i = 0, i < voters, i++)
   {
     // Set first vote
-    string rank1 = get_string ("Vote:\n");
+    string rank1 = get_string ("Vote:");
     // define 1st flag
     bool flagone = false;
     for (i = 0, i < candidate, i++)
     {
       //voted one[0] is not the same as argv[0]. //argv[0]is the program. voted one[0] is candidate 1.
-      if (strcmp(tally.name[i], rank1) == 0)
+      if (strcmp(election.name[i], rank1) == 0)
       {
-        one.vote[i] ++;
+        election.vote1[i] ++;
       }
       else
       {
         flagone = true;
       }
+    if (!flagone)
+    {
+      printf("Invalid Vote\n");
+      return;
+    }
+    //For 2nd vote
+    string rank2 = get_string("Vote:");
+    //define 2nd flag
+    bool flagtwo = false;
+    for (i = 0, i < candidate, i++)
+    {
+      if (strcmp(election.name[i], rank2) == 0)
+      {
+        election.vote2[i] ++;  
+      }
+      else
+      {
+        flagtwo = true;
+      }
+    if (!flagtwo)
+    {
+      printf("Invalid Vote \n")
+      return;
+    }
+    //for 3rd vote
+    string rank3 = get_string("Vote:");
+    //define 3rd flag
+    bool flagthree = false;
+    for (i = 0, i < candidate, i++)
+    {
+      if (strcmp(election.name[i], rank3) == 0)
+      {
+        election.vote3[i] ++;
+      }
+      else
+      {
+        flagthree = true;
+      }
+    if (!flagthree)
+    {
+      printf("Invalid Vote \n")
+      return;
+    }
+  }
+    
